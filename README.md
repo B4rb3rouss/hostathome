@@ -101,12 +101,11 @@ Récupérez la dernière archive
     ./hostathome-dialog.sh
 
 Pour profiter de la toute dernière version du script,
-vus devrez cependant avoir le paquet *mercurial* d'installé
-pour pouvoir accéder à la commande `hg`. Récupérez-le avec les commandes
+vus devrez cependant avoir le paquet *git* d'installé
+pour pouvoir accéder à la commande `git`. Récupérez-le avec les commandes
 suivantes : 
 
-    hg clone http://hg.tuxfamily.org/mercurialroot/hostathome/hostathome
-
+    git clone https://github.com/Ikse/hostathome.git
   
 
 ##Utilisation <a id="utilisation"></a>
@@ -191,15 +190,8 @@ Il est normalement facile d'ajouter des services à ce script.
 N'hésitez donc pas à contribuer en [me contactant](/Divers/Contact.html)
 pour obtenir les droits d'écriture sur le dépôt.
 
-Vous pouvez aussi vous inscrire à la liste de diffusion
-hostathome@lists.tuxfamily.org. 
-
-- Pour vous y inscrire, envoyez un mail à l'adresse
-  hostathome-request@lists.tuxfamily.org avec le sujet : "subscribe",
-- Pour vous désinscrire, la même chose, mais avec le sujet
-  "unsubscribe",
-- Pour parler, il suffit ensuite d'écrire à l'adresse 
-hostathome@lists.tuxfamily.org.
+Vous pouvez aussi poarticiper [au dépôt
+github](https://github.com/Ikse/hostathome)
 
 ##Mon application préférée n'est pas supportée <a id="nonsupportee"></a>
 
