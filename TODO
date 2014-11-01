@@ -1,16 +1,15 @@
 #TODO
-- Créer un paquet debian + un dépôt
+- Internationaliser le script avec gettext.
+- Amélioration du paquet debian. Utiliser le Makefile.
 - Gestion des certificats (renouvellement...) -> garder trace des certificats créés
 - Possibilité d'installer dans des /sous-dossier
 - Vérifier la sécurité avec les BDD (postgresql)
 - Vérifier et améliorer la sécurité pour le serveur de courriel postfix
-- Solution de sauvegarde du serveur
 - Gestion des mises à jour des applications -> prévenir l'utilisateur (cron-apt?) et ajouter une option de mises à jour dans hostathome
 - configuration post-install (ajout clients openvpn...)
 
 ## Programmes à ajouter
 - clamav?
-- Boinc
 - dotclear -> Il dit supporter sqlite, mais comment l'utiliser?
 - Serveur IRC
 - mailman
@@ -18,12 +17,10 @@
 
 ## Idées à étudier
 
-- mediagoblin + détection si mise à jour ou installation
 - Utilisation de paquets deb pour faciliter les mises à jour ?
 - Travail collaboratif (Frama*)
 - Gestion de firewall simplifiée
 - Interface d'administration pour ajouter utilisateurs ou services
-- http://baikal-server.com/
 - https://github.com/al3x/sovereign
 
 ## Rejetés
