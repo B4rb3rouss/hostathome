@@ -1,0 +1,4 @@
+DPkg::Post-Invoke {
+    "rkhunter --update;"
+    "rkhunter --propupdate";
+};

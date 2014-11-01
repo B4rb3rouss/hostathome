@@ -1,0 +1,34 @@
+#! /bin/sh
+    
+### BEGIN INIT INFO
+# Provides: rtorrent
+# Required-Start: $local_fs $remote_fs
+# Required-Stop: $local_fs $remote_fs
+# Should-Start: $network
+# Should-Stop: $network
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: rtorrent
+# Description: start rtorrent
+### END INIT INFO
+    
+USER="${TORRENTUSER}"
+    
+case "$1" in
+    start)
+    echo "Starting rtorrent..."
+    su $USER -c 'screen -d -m -S rtorrent rtorrent'
+    ;;
+    stop)
+    echo "Stopping rtorrent..."
+    #killall -s 2 rtorrent
+    su $USER -c 'screen -X -S rtorrent quit'
+    ;;
+    *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+    
+exit 0
+

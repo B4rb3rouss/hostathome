@@ -1,0 +1,13 @@
+Package: hostathome
+Version: 0.8
+Section: base
+Priority: optional
+Maintainer: Thuban <thuban@yeuxdelibad.net>
+Architecture: all
+Depends: bash, dialog
+Homepage: <http://yeuxdelibad.net/Programmation/Hostathome.html>
+Description: Helps to install various services on your own server
+    Hostathome shows a dialog menu where you can choose to install
+    and pre-configure various services on your server, such as a mail server, 
+    a http server, a seedbox, and webapps (owncloud, squirrelmail, shaarli...) 
+    Finally, the script also can prepare security of your server (fail2ban, portsentry...)
