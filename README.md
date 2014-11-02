@@ -23,7 +23,7 @@ Pour une utilisation optimale de votre serveur, il est pratique d'avoir
 un nom de domaine. Pour plus d'infos, voir [cette partie](#DNS).
 
 - [Page
-  "officielle](http://yeuxdelibad.net/Programmation/Hostathome.html)
+  "officielle"](http://yeuxdelibad.net/Programmation/Hostathome.html)
 - [Hostathome sur github](https://github.com/Ikse/hostathome)
 
 ## Sommaire
