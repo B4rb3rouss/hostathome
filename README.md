@@ -22,6 +22,10 @@ libertés de chacun. Hostathome doit alors permettre :
 Pour une utilisation optimale de votre serveur, il est pratique d'avoir
 un nom de domaine. Pour plus d'infos, voir [cette partie](#DNS).
 
+- [Page
+  "officielle](http://yeuxdelibad.net/Programmation/Hostathome.html)
+- [Hostathome sur github](https://github.com/Ikse/hostathome)
+
 ## Sommaire
 
 - [Services proposés](#services)
@@ -190,7 +194,7 @@ Il est normalement facile d'ajouter des services à ce script.
 N'hésitez donc pas à contribuer en [me contactant](/Divers/Contact.html)
 pour obtenir les droits d'écriture sur le dépôt.
 
-Vous pouvez aussi poarticiper [au dépôt
+Vous pouvez aussi participer [au dépôt
 github](https://github.com/Ikse/hostathome)
 
 ##Mon application préférée n'est pas supportée <a id="nonsupportee"></a>
