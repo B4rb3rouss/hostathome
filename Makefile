@@ -1,6 +1,6 @@
-USRBIN=./usr/bin
-DOC=./usr/share/doc/hostathome
-HAH=./usr/share/hostathome
+USRBIN=./deb/usr/bin
+DOC=./deb/usr/share/doc/hostathome
+HAH=./deb/usr/share/hostathome
 STOCK=$(HAH)/stock
 
 all:
@@ -13,5 +13,5 @@ all:
 	cp AUTHORS $(DOC)
 	cp README.md $(DOC)/README
 	cp LICENSE $(DOC)/copyright
-	cd .. && dpkg-deb --build hostathome
+	dpkg-deb --build deb hostathome.deb
 
