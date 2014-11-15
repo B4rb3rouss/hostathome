@@ -1,10 +1,11 @@
 #!/bin/bash
 # hah-engine.sh : install your own server at home
 # Licence:  GPLv3
-# Author:  © Xavier Cartron (XC) 2013, thuban@yeuxdelibad.net
+# Author:  © Xavier Cartron (XC) 2013 2014, thuban@yeuxdelibad.net
 # http://hg.yeuxdelibad.net/hostathome
 VERSION="0.8"
 
+# files
 LOGFILE="$CURDIR/hah-$(date +%F-%H-%M).log"
 RAPPORT="~/hah-$(date +%F-%H-%M).report"
 TEMP="/tmp/hah"
@@ -14,9 +15,6 @@ if [ -d /usr/share/hostathome/stock ]; then
 else
     STOCK="$CURDIR/stock"
 fi
-
-
-
 
 verbose() {
   set -x
@@ -249,6 +247,7 @@ EOF
     #hostname $NOMDHOTE
 
     process "$STOCK/postfix_main.cf" > "/etc/postfix/main.cf"
+    process "$STOCK/postfix_master.cf" > "/etc/postfix/master.cf"
 
     service postfix restart
 
@@ -275,7 +274,7 @@ EOF
     rapport << EOF
 ---
 Serveur de courriel installé et configuré.
-Pensez à ouvrir les ports utilisés (25,143,993)" 
+Pensez à ouvrir les ports utilisés (25 ou 587,143,993)" 
 
 Pour lire votre courrier, installez un webmail, 
 ou bien avec un client de messagerie tel que thunderbird, claws-mail, 
@@ -370,7 +369,7 @@ dosecurite() {
 enabled  = true
 filter   = nginx-404
 action   = iptables-multiport[name=nginx-404, port=\"http,https\" protocol=tcp]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 2
 findtime  = 6
 bantime  = 1200
@@ -387,7 +386,7 @@ maxretry = 3
 enabled = true
 filter = nginx-login
 action = iptables-multiport[name=NoLoginFailures, port=\"http,https\"]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 bantime = 630 # 10 minutes 30 secondes
 maxretry = 3
 
@@ -395,7 +394,7 @@ maxretry = 3
 enabled  = true
 filter = apache-badbots
 action = iptables-multiport[name=BadBots, port=\"http,https\"]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 bantime  = 87000 # 1 jour et 10 minutes 
 maxretry = 1
 
@@ -403,7 +402,7 @@ maxretry = 1
 enabled = true
 action = iptables-multiport[name=NoScript, port=\"http,https\"]
 filter = nginx-noscript
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 6
 bantime  = 87000 # 1 jour et 10 minutes 
 
@@ -411,7 +410,7 @@ bantime  = 87000 # 1 jour et 10 minutes
 enabled = true
 action = iptables-multiport[name=NoProxy, port=\"http,https\"]
 filter = nginx-proxy
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 0
 bantime  = 87000 # 1 jour et 10 minutes 
 
@@ -1538,9 +1537,6 @@ Ouvrez dans un navigateur https://$NOMDHOTE/dotclear2-loader.php pour terminer l
 * Site : http://dotclear.org
 EOF
 }
-
-
-
 
 work() {
 # work <fichier contenant les tâches à réaliser>

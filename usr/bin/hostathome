@@ -7,6 +7,11 @@ else
     . "$CURDIR/hah-engine.sh"
 fi
 
+# gettext
+#. gettext.sh
+#export TEXTDOMAIN=hostathome
+#export TEXTDOMAINDIR=/usr/share/locale
+
 # Global variables
 SSLCOUNTRY=""
 SSLSTATE=""

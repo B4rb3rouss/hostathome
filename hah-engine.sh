@@ -369,7 +369,7 @@ dosecurite() {
 enabled  = true
 filter   = nginx-404
 action   = iptables-multiport[name=nginx-404, port=\"http,https\" protocol=tcp]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 2
 findtime  = 6
 bantime  = 1200
@@ -386,7 +386,7 @@ maxretry = 3
 enabled = true
 filter = nginx-login
 action = iptables-multiport[name=NoLoginFailures, port=\"http,https\"]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 bantime = 630 # 10 minutes 30 secondes
 maxretry = 3
 
@@ -394,7 +394,7 @@ maxretry = 3
 enabled  = true
 filter = apache-badbots
 action = iptables-multiport[name=BadBots, port=\"http,https\"]
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 bantime  = 87000 # 1 jour et 10 minutes 
 maxretry = 1
 
@@ -402,7 +402,7 @@ maxretry = 1
 enabled = true
 action = iptables-multiport[name=NoScript, port=\"http,https\"]
 filter = nginx-noscript
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 6
 bantime  = 87000 # 1 jour et 10 minutes 
 
@@ -410,7 +410,7 @@ bantime  = 87000 # 1 jour et 10 minutes
 enabled = true
 action = iptables-multiport[name=NoProxy, port=\"http,https\"]
 filter = nginx-proxy
-logpath = /var/log/nginx*/*access*.log
+logpath = /var/log/nginx*/*error*.log
 maxretry = 0
 bantime  = 87000 # 1 jour et 10 minutes 
 

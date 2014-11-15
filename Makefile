@@ -11,7 +11,7 @@ all:
 	cp hostathome-dialog.sh $(USRBIN)/hostathome
 	cp -r ./stock/* $(STOCK)
 	cp AUTHORS $(DOC)
-	cp ReadMe.md $(DOC)/README
-	cp LICENCE $(DOC)/copyright
+	cp README.md $(DOC)/README
+	cp LICENSE $(DOC)/copyright
 	cd .. && dpkg-deb --build hostathome
 
