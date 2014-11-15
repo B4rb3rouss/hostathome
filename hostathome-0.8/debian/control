@@ -1,0 +1,19 @@
+Source: hostathome
+Section: misc
+Priority: extra
+Maintainer: Thuban <thuban@yeuxdelibad.net>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: http://yeuxdelibad.net/Programmation/Hostathome.html
+#Vcs-Git: git://git.debian.org/collab-maint/hostathome.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/hostathome.git;a=summary
+
+Package: hostathome
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Script to install your own server at home 
+    Ease the installation of a server
+    with some services such as http, ssh, sftp
+    mail or webapps like owncloud or webmails.
+    Basic security is also supported with fail2ban
+ <insert long description, indented with spaces>

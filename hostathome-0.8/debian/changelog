@@ -1,0 +1,5 @@
+hostathome (0.8-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Thuban <thuban@yeuxdelibad.net>  Sat, 15 Nov 2014 20:36:04 +0100
