@@ -1205,7 +1205,7 @@ dotorrent(){
     update-rc.d rtorrent defaults
 
     # rutorrent
-    wget -c -O "$TEMP/rutorrent.tar.gz" "http://dl.bintray.com/novik65/generic/rutorrent-3.6.tar.gz"
+    wget -c -O "$TEMP/rutorrent.tar.gz" "https://bintray.com/artifact/download/novik65/generic/rutorrent-3.6.tar.gz"
     tar xvf $TEMP/rutorrent.tar.gz -C "/$ROOTOFHTTP"
     chown -R www-data:www-data "$ROOTOFHTTP"
     chmod 777 "$TORRENTDIR/download"
