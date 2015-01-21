@@ -1347,7 +1347,7 @@ dokanboard(){
     wget -O $TEMP/kanboard.zip "http://kanboard.net/kanboard-latest.zip"
     mkdir -p $TEMP/kanboardtemp
     unzip $TEMP/kanboard.zip -d $TEMP/kanboardtemp
-    mv $TEMP/kanboardtemp/kanboard-master/* "/$ROOTOFHTTP"
+    mv $TEMP/kanboardtemp/kanboard/* "/$ROOTOFHTTP"
 
     finwebserver 0 "/$ROOTOFHTTP" 
 
