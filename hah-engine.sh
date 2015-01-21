@@ -1344,7 +1344,7 @@ dokanboard(){
 
     # kanboard
     echo "Téléchargeons le dernier kanboard"
-    wget -O $TEMP/kanboard.zip "https://github.com/fguillot/kanboard/archive/master.zip"
+    wget -O $TEMP/kanboard.zip "http://kanboard.net/kanboard-latest.zip"
     mkdir -p $TEMP/kanboardtemp
     unzip $TEMP/kanboard.zip -d $TEMP/kanboardtemp
     mv $TEMP/kanboardtemp/kanboard-master/* "/$ROOTOFHTTP"
