@@ -1249,6 +1249,7 @@ dotransmission(){
 
     mkdir -p "$DOWNDIR"
 
+    rm /etc/transmission-daemon/settings.json
     process "$STOCK/transmission-settings.json" > /etc/transmission-daemon/settings.json
     chown root:root /etc/transmission-daemon/settings.json
     chmod 600 /etc/transmission-daemon/settings.json
@@ -1258,7 +1259,7 @@ dotransmission(){
     ssl_certificate /etc/ssl/private/$1.pem;
     ssl_certificate_key /etc/ssl/private/$1.pem;"
 
-    process "$STOCK/nginx-transmission.conf" > "domaineconf"
+    process "$STOCK/nginx-transmission.conf" > "${domaineconf}"
 
     service transmission-daemon restart
     service nginx restart
