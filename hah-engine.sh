@@ -1248,6 +1248,7 @@ dotransmission(){
     installapt transmission-daemon nginx apache2-utils
 
     mkdir -p "$DOWNDIR"
+    mkdir -p "$DOWNDIR"/torrents
 
     service transmission-daemon stop
     process "$STOCK/transmission-settings.json" > /etc/transmission-daemon/settings.json
@@ -1271,6 +1272,8 @@ Vous pouvez accéder à l'interface de gestion des torrents à l'adresse :
     https://$NOMDHOTE/transmission
 Vous pouvez récupérer les téléchargements à l'adresse : 
     https://$NOMDHOTE/downloads
+Tous les torrents placés dans ce dossier seront ajoutés : 
+    https://$DOWNDIR/torrents
 EOF
 }
 
