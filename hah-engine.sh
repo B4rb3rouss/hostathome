@@ -1182,8 +1182,8 @@ EOF
 
 
 
-dotorrent(){
-    # dotorrent <nom hote> <username> <mot de passe>
+dortorrent(){
+    # dortorrent <nom hote> <username> <mot de passe>
     local domaineconf="/etc/nginx/conf.d/torrent.conf"
     local NOMDHOTE="$1"
     local SSLCERT=""
@@ -1234,7 +1234,43 @@ Vous pouvez récupérer les téléchargements à l'adresse :
 Tous les fichiers .torrents présents dans le dossier 
 $TORRENTDIR/torrents seront automatiquement ajoutés.
 EOF
+}
 
+dotransmission(){
+    # dotransmission <nom hote> <username> <mot de passe> <repertoire de telechargement>
+    local domaineconf="/etc/nginx/conf.d/transmission.conf"
+    local NOMDHOTE="$1"
+    local SSLCERT=""
+    local TORRENTUSER="$2"
+    local TORRENTPWD="$3"
+    local DOWNDIR="$4"
+
+    installapt transmission-daemon nginx apache2-utils
+
+    mkdir -p "$DOWNDIR"
+
+    process "$STOCK/transmission-settings.json" > /etc/transmission-daemon/settings.json
+    chown root:root /etc/transmission-daemon/settings.json
+    chmod 600 /etc/transmission-daemon/settings.json
+
+    dosslcert "$NOMDHOTE"
+    SSLCERT="
+    ssl_certificate /etc/ssl/private/$1.pem;
+    ssl_certificate_key /etc/ssl/private/$1.pem;"
+
+    process "$STOCK/nginx-transmission.conf" > "domaineconf"
+
+    service transmission-daemon restart
+    service nginx restart
+
+    rapport << EOF
+---
+Seedbox installée
+Vous pouvez accéder à l'interface de gestion des torrents à l'adresse : 
+    https://$NOMDHOTE
+Vous pouvez récupérer les téléchargements à l'adresse : 
+    https://$NOMDHOTE/downloads
+EOF
 }
 
 dodokuwiki() {

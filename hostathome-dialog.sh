@@ -219,7 +219,8 @@ dialogmenu() {
         NoNonsenseForum "Un forum très simple" off\
         fluxBB "Un forum" off\
         phpBB "Un autre forum" off\
-        torrent "Seedbox de torrent" off \
+        rtorrent "Seedbox avec rtorrent" off \
+        transmission "Seedbox avec transmission" off \
         DokuWiki "Simple wiki" off\
         MediaWiki "Wiki complet [complexe]" off\
         tor "Relais tor" off\
@@ -390,7 +391,7 @@ dialogmenu() {
                         dgetinfo NDD "Quel est votre nom de domaine (sans http://)? (ex : wiki.mondomaine.com) " "Configuration de mediawiki"
                         echo "domediawiki $NDD" >> "$tmpwork"
                         ;;
-                    "torrent")
+                    "rtorrent")
                         local NDD=""
                         local USERNAME=""
                         local MDP=""
@@ -398,8 +399,21 @@ dialogmenu() {
                         dgetinfo NDD "Nom de domaine pour rtorrent?" "Configuration de rtorrent"
                         dgetinfo USERNAME "Utilisateur pour rtorrent?" "Configuration de rtorrent"
                         dgetinfo MDP "Mot de passe pour rtorrent?" "Configuration de rtorrent"
-                        echo "dotorrent $NDD $USERNAME $MDP" >> "$tmpwork"
+                        echo "dortorrent $NDD $USERNAME $MDP" >> "$tmpwork"
                         ;;
+                    "transmission")
+                        local NDD=""
+                        local USERNAME=""
+                        local MDP=""
+                        local DOWNDIR=""
+                        info_ssl
+                        dgetinfo NDD "Nom de domaine pour transmission?" "Configuration de transmission"
+                        dgetinfo USERNAME "Utilisateur pour transmission?" "Configuration de transmission"
+                        dgetinfo MDP "Mot de passe pour transmission?" "Configuration de transmission"
+                        dgetinfo DOWNDIR "Dossier de téléchargement (ex : /media/downloads)?" "Configuration de transmission"
+                        echo "dotransmission $NDD $USERNAME $MDP $DOWNDIR" >> "$tmpwork"
+                        ;;
+
                     "jyraphe")
                         local DOCROOT=""
                         info_ssl
