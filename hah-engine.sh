@@ -1268,7 +1268,7 @@ dotransmission(){
 ---
 Seedbox installée
 Vous pouvez accéder à l'interface de gestion des torrents à l'adresse : 
-    https://$NOMDHOTE
+    https://$NOMDHOTE/transmission
 Vous pouvez récupérer les téléchargements à l'adresse : 
     https://$NOMDHOTE/downloads
 EOF
