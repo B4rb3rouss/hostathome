@@ -1249,7 +1249,7 @@ dotransmission(){
 
     mkdir -p "$DOWNDIR"
 
-    rm /etc/transmission-daemon/settings.json
+    service transmission-daemon stop
     process "$STOCK/transmission-settings.json" > /etc/transmission-daemon/settings.json
     chown root:root /etc/transmission-daemon/settings.json
     chmod 600 /etc/transmission-daemon/settings.json
@@ -1261,7 +1261,7 @@ dotransmission(){
 
     process "$STOCK/nginx-transmission.conf" > "${domaineconf}"
 
-    service transmission-daemon restart
+    service transmission-daemon start
     service nginx restart
 
     rapport << EOF
