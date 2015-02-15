@@ -71,8 +71,6 @@ navigateur internet sont installés avec nginx comme serveur http.
   pages à lire plus tard,
 - Installation de [pico](http://pico.dev7studios.com/), un CMS très
   simple + son éditeur en ligne,
-- Installation de [wallabag](https://www.wallabag.org/) pour sauver des
-  pages à lire plus tard,
 - Installation de [jyraphe](http://home.gna.org/jyraphe/), pour déposer
   des fichiers trop lourds à envoyer par mail, et donner le lien de
   téléchargement à un ami,
@@ -85,6 +83,7 @@ navigateur internet sont installés avec nginx comme serveur http.
 - Installation d'une seedbox torrent
   ([rtorrent](http://libtorrent.rakshasa.no/) et
   [rutorrent](https://code.google.com/p/rutorrent/)),
+  ou avec [transmission](https://www.transmissionbt.com).
 - Installation de wikis comme [DokuWiki](https://www.dokuwiki.org/dokuwiki) ou
   [MediaWiki](https://www.mediawiki.org),
 - Installation de gestionnaires de listes de tâches : 
