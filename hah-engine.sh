@@ -1578,6 +1578,37 @@ Ouvrez dans un navigateur https://$NOMDHOTE/dotclear2-loader.php pour terminer l
 EOF
 }
 
+dobaikal() {
+  # dobaikal <nom d'hote> </repertoire/contenant/baikal>
+    echo "installation de baikal"
+    local domaineconf="/etc/nginx/conf.d/baikal.conf"
+    local NOMDHOTE="$1"
+    local ROOTOFHTTP="$2"
+
+    installapt php5 php-apc php5-fpm php5-sqlite sqlite nginx 
+    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    process "$STOCK/nginx-baikal.conf" > "${domaineconf}"
+
+    wget -c -O $TEMP/baikal.tgz "http://baikal-server.com/get/baikal-regular-0.2.7.tgz"
+    
+    mkdir -p $TEMP/baikaltmp
+    tar xvf $TEMP/baikal.tgz -C $TEMP/baikaltmp
+    mv $TEMP/baikaltmp/baikal-regular*/* "/$ROOTOFHTTP"
+    touch "/$ROOTOFHTTP/Specific/ENABLE_INSTALL"
+
+    finwebserver 0 "/$ROOTOFHTTP" 
+
+    rapport << EOF
+---
+baikal installé
+Ouvrez dans un navigateur http://$NOMDHOTE pour terminer la configuration
+
+* Site : http://baikal-server.com
+EOF
+
+}
+
 work() {
 # work <fichier contenant les tâches à réaliser>
     if [ ! -f "$1" ]; then

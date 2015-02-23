@@ -223,6 +223,7 @@ dialogmenu() {
         transmission "Seedbox avec transmission" off \
         DokuWiki "Simple wiki" off\
         MediaWiki "Wiki complet [complexe]" off\
+        Baikal "Serveur CalDAV+CardDAV" off\
         tor "Relais tor" off\
         monitorix "Supervisation du serveur" off\
         unbound "[avancé] Serveur DNS" off\
@@ -390,6 +391,11 @@ dialogmenu() {
                         local NDD=""
                         dgetinfo NDD "Quel est votre nom de domaine (sans http://)? (ex : wiki.mondomaine.com) " "Configuration de mediawiki"
                         echo "domediawiki $NDD" >> "$tmpwork"
+                        ;;
+                    "Baikal") 
+                        local NDD=""
+                        info_site COMMAND "Baikal" 
+                        echo "dobaikal $COMMAND" >> "$tmpwork"
                         ;;
                     "rtorrent")
                         local NDD=""
