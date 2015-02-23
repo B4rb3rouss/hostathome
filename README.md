@@ -92,6 +92,7 @@ navigateur internet sont installés avec nginx comme serveur http.
   [kanboard](http://kanboard.net),
 - Installation d'un serveur DNS [unbound](http://www.unbound.net),
 - Installation de [monitorix](http://www.monitorix.org) pour superviser votre serveur.
+- Installation de [Baikal](http://baikal-server.com), un serveur CalDAV et CardDAV
 
 ## Installation <a id="installation"></a>
 
