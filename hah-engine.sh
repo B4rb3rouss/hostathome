@@ -886,6 +886,45 @@ EOF
 
 }
 
+dojyrafeau(){
+# dojyrafeau <nom d'hote> </dossier/contenant/jyrafeau> 
+local domaineconf="/etc/nginx/conf.d/jyrafeau.conf"
+    local NOMDHOTE="$1"
+    local ROOTOFHTTP="$2"
+    local DOCROOT="$3"
+    local SSLCERT=""
+
+    installapt nginx php5 openssl ssl-cert php5-fpm php-apc 
+    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    process "$STOCK/nginx-jyrafeau.conf" > "${domaineconf}"
+    phpuploadlimit
+
+    # jyraphe
+    echo "Téléchargeons le dernier jyrafeau"
+    mkdir -p $TEMP/jyrafeau
+    wget -c -O $TEMP/jyrafeau.zip "https://gitlab.com/mojo42/Jirafeau/repository/archive.zip"
+    unzip $TEMP/jyrafeau.zip -d $TEMP/jyrafeau
+    
+    mv $TEMP/jyrafeau/jyrafeau/*/* "/$ROOTOFHTTP"
+
+    chown -R www-data:www-data "/$ROOTOFHTTP"
+
+    service nginx restart
+    service php5-fpm restart
+
+    rapport << EOF
+---
+jyrafeau installé
+Ouvrez dans un navigateur https://$NOMDHOTE/install.php
+pour terminer l'installation
+
+* Site : https://gitlab.com/mojo42/Jirafeau/wikis/home
+EOF
+}
+
+
+
 dojyraphe(){
     # dojyraphe <nom d'hote> </dossier/contenant/jyraphe> </dossier/contenant/les/documents>
     local domaineconf="/etc/nginx/conf.d/jyraphe.conf"
