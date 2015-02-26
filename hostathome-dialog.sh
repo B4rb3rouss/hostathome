@@ -204,7 +204,7 @@ dialogmenu() {
         owncloud "Hébergez votre nuage" off\
         dropcenter "Déposez et partagez vos documents" off \
         pydio "Partage de fichiers (Ajaxplorer)" off\
-        jyrafeau "Hébergement et partage de documents" off\
+        jirafeau "Hébergement et partage de documents" off\
         jyraphe "Hébergement et partage de documents" off\
         xmpp "Votre serveur jabber/xmpp" off\
         pluxml "Blog/CMS" off\
@@ -429,10 +429,10 @@ dialogmenu() {
                             "Dossier contenant les documents chargés"
                         echo "dojyraphe $COMMAND $DOCROOT" >> "$tmpwork"
                         ;;
-                    "jyrafeau")
+                    "jirafeau")
                         info_ssl
-                        info_site COMMAND "jyrafeau"
-                        echo "dojyrafeau $COMMAND" >> "$tmpwork"
+                        info_site COMMAND "jirafeau"
+                        echo "dojirafeau $COMMAND" >> "$tmpwork"
                         ;;
                     "unbound")
                         dialog --title "Configuration pour unbound" --yesno "Votre serveur reçoit-il son IP automatiquement avec dhclient? " 20 60
