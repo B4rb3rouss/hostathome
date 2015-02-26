@@ -886,9 +886,9 @@ EOF
 
 }
 
-dojyrafeau(){
-# dojyrafeau <nom d'hote> </dossier/contenant/jyrafeau> 
-local domaineconf="/etc/nginx/conf.d/jyrafeau.conf"
+dojirafeau(){
+# dojirafeau <nom d'hote> </dossier/contenant/jirafeau> 
+local domaineconf="/etc/nginx/conf.d/jirafeau.conf"
     local NOMDHOTE="$1"
     local ROOTOFHTTP="$2"
     local DOCROOT="$3"
@@ -897,16 +897,16 @@ local domaineconf="/etc/nginx/conf.d/jyrafeau.conf"
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc 
     cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    process "$STOCK/nginx-jyrafeau.conf" > "${domaineconf}"
+    process "$STOCK/nginx-jirafeau.conf" > "${domaineconf}"
     phpuploadlimit
 
     # jyraphe
-    echo "Téléchargeons le dernier jyrafeau"
-    mkdir -p $TEMP/jyrafeau
-    wget -c -O $TEMP/jyrafeau.zip "https://gitlab.com/mojo42/Jirafeau/repository/archive.zip"
-    unzip $TEMP/jyrafeau.zip -d $TEMP/jyrafeau
+    echo "Téléchargeons le dernier jirafeau"
+    mkdir -p $TEMP/jirafeau
+    wget -c -O $TEMP/jirafeau.zip "https://gitlab.com/mojo42/Jirafeau/repository/archive.zip"
+    unzip $TEMP/jirafeau.zip -d $TEMP/jirafeau
     
-    mv $TEMP/jyrafeau/jyrafeau/*/* "/$ROOTOFHTTP"
+    mv $TEMP/jirafeau/Jirafeau.git/* "/$ROOTOFHTTP"
 
     chown -R www-data:www-data "/$ROOTOFHTTP"
 
@@ -915,7 +915,7 @@ local domaineconf="/etc/nginx/conf.d/jyrafeau.conf"
 
     rapport << EOF
 ---
-jyrafeau installé
+jirafeau installé
 Ouvrez dans un navigateur https://$NOMDHOTE/install.php
 pour terminer l'installation
 
