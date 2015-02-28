@@ -441,6 +441,7 @@ bantime  = 87000 # 1 jour et 10 minutes
     sed -i 's;#ALLOWHIDDENDIR="/dev/.udev";ALLOWHIDDENDIR="/dev/.udev";' /etc/rkhunter.conf
     sed -i 's;#ALLOWHIDDENDIR="/dev/.static";ALLOWHIDDENDIR="/dev/.static";' /etc/rkhunter.conf
     sed -i 's;MAIL-ON-WARNING="";MAIL-ON-WARNING="root@localhost";' /etc/rkhunter.conf
+    echo "SCRIPTWHITELIST=/usr/bin/unhide.rb" >> /etc/rkhunter.conf
 
     cp -v "$STOCK/apt-rkhunter" /etc/apt/apt.conf/98-rkhunter
 }
