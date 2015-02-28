@@ -379,7 +379,7 @@ enabled = true
 filter = nginx-auth
 action = iptables-multiport[name=NoAuthFailures, port=\"http,https\"]
 logpath = /var/log/nginx*/*error*.log
-bantime = 630 # 10 minutes 30 secondes
+bantime = 630 
 maxretry = 3
 
 [nginx-login]
@@ -387,7 +387,7 @@ enabled = true
 filter = nginx-login
 action = iptables-multiport[name=NoLoginFailures, port=\"http,https\"]
 logpath = /var/log/nginx*/*error*.log
-bantime = 630 # 10 minutes 30 secondes
+bantime = 630 
 maxretry = 3
 
 [nginx-badbots]
@@ -395,7 +395,7 @@ enabled  = true
 filter = apache-badbots
 action = iptables-multiport[name=BadBots, port=\"http,https\"]
 logpath = /var/log/nginx*/*error*.log
-bantime  = 87000 # 1 jour et 10 minutes 
+bantime  = 87000 
 maxretry = 1
 
 [nginx-noscript]
@@ -404,7 +404,7 @@ action = iptables-multiport[name=NoScript, port=\"http,https\"]
 filter = nginx-noscript
 logpath = /var/log/nginx*/*error*.log
 maxretry = 6
-bantime  = 87000 # 1 jour et 10 minutes 
+bantime  = 87000 
 
 [nginx-proxy]
 enabled = true
@@ -412,7 +412,7 @@ action = iptables-multiport[name=NoProxy, port=\"http,https\"]
 filter = nginx-proxy
 logpath = /var/log/nginx*/*error*.log
 maxretry = 0
-bantime  = 87000 # 1 jour et 10 minutes 
+bantime  = 87000 
 
 " >> /etc/fail2ban/jail.local
 
