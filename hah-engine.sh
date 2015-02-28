@@ -434,6 +434,8 @@ bantime  = 87000 # 1 jour et 10 minutes
     # portsentry default configuration
     sed -i 's/="tcp"/="atcp"/' /etc/default/portsentry
     sed -i 's/="udp"/="audp"/' /etc/default/portsentry
+    sed -i 's/BLOCK_UDP="0"/BLOCK_UDP="1"/' /etc/portsentry/portsentry.conf
+    sed -i 's/BLOCK_TCP="0"/BLOCK_TCP="1"/' /etc/portsentry/portsentry.conf
 
     service portsentry restart
 
