@@ -446,6 +446,10 @@ bantime  = 87000 # 1 jour et 10 minutes
     echo "SCRIPTWHITELIST=/usr/bin/unhide.rb" >> /etc/rkhunter.conf
 
     cp -v "$STOCK/apt-rkhunter" /etc/apt/apt.conf/98-rkhunter
+
+    if [ -f /etc/ssh/sshd_config ]; then
+        echo PermitRootLogin no >> /etc/ssh/sshd_config
+    fi
 }
 
 doxmpp() {
