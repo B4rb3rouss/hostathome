@@ -389,6 +389,7 @@ dosecurite() {
     sed -i 's;MAIL-ON-WARNING="";MAIL-ON-WARNING="root@localhost";' /etc/rkhunter.conf
     echo "SCRIPTWHITELIST=/usr/bin/unhide.rb" >> /etc/rkhunter.conf
 
+    mkdir -p /etc/apt/apt.conf
     cp -v "$STOCK/apt-rkhunter" /etc/apt/apt.conf/98-rkhunter
 
     if [ -f /etc/ssh/sshd_config ]; then
