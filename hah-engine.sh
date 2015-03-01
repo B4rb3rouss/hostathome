@@ -359,63 +359,7 @@ dosecurite() {
 
     #fail2ban
     if ! [ -f /etc/fail2ban/jail.local ]; then
-        cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-        sed -i "s/enabled.*= false/enabled  = true/g" /etc/fail2ban/jail.local
-
-        # nginx
-        # merci Matthieu Patout
-        echo "
-[nginx-404]
-enabled  = true
-filter   = nginx-404
-action   = iptables-multiport[name=nginx-404, port=\"http,https\" protocol=tcp]
-logpath = /var/log/nginx*/*error*.log
-maxretry = 2
-findtime  = 6
-bantime  = 1200
-
-[nginx-auth]
-enabled = true
-filter = nginx-auth
-action = iptables-multiport[name=NoAuthFailures, port=\"http,https\"]
-logpath = /var/log/nginx*/*error*.log
-bantime = 630 
-maxretry = 3
-
-[nginx-login]
-enabled = true
-filter = nginx-login
-action = iptables-multiport[name=NoLoginFailures, port=\"http,https\"]
-logpath = /var/log/nginx*/*error*.log
-bantime = 630 
-maxretry = 3
-
-[nginx-badbots]
-enabled  = true
-filter = apache-badbots
-action = iptables-multiport[name=BadBots, port=\"http,https\"]
-logpath = /var/log/nginx*/*error*.log
-bantime  = 87000 
-maxretry = 1
-
-[nginx-noscript]
-enabled = true
-action = iptables-multiport[name=NoScript, port=\"http,https\"]
-filter = nginx-noscript
-logpath = /var/log/nginx*/*error*.log
-maxretry = 6
-bantime  = 87000 
-
-[nginx-proxy]
-enabled = true
-action = iptables-multiport[name=NoProxy, port=\"http,https\"]
-filter = nginx-proxy
-logpath = /var/log/nginx*/*error*.log
-maxretry = 0
-bantime  = 87000 
-
-" >> /etc/fail2ban/jail.local
-
+        cp -v "$STOCK/jail.local" /etc/fail2ban/jail.local
         cp -v "$STOCK"/filter/nginx-404.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-proxy.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-noscript.conf /etc/fail2ban/filter.d/
