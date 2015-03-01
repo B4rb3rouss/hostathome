@@ -359,7 +359,7 @@ dosecurite() {
 
     #fail2ban
     if ! [ -f /etc/fail2ban/jail.local ]; then
-        cp -v "$STOCK/jail.local" /etc/fail2ban/jail.local
+        cp -v "$STOCK"/jail.local /etc/fail2ban/jail.local
         cp -v "$STOCK"/filter/nginx-404.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-proxy.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-noscript.conf /etc/fail2ban/filter.d/
