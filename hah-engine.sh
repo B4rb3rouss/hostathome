@@ -442,7 +442,6 @@ doowncloud(){
     installapt nginx php5 php5-gd php-xml-parser php5-intl curl libcurl3 php5-curl openssl ssl-cert php5-dev php5-fpm php5-cli php5-sqlite php5-common php5-cgi sqlite php-pear php-apc bzip2 libav-tools php5-mcrypt php5-imagick php5-json bzip2
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-owncloud.conf" > "${domaineconf}"
     phpuploadlimit
 
@@ -473,7 +472,6 @@ dodropcenter(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc  unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-dropcenter.conf" > "${domaineconf}"
@@ -510,7 +508,6 @@ dopluxml(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-gd unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-pluxml.conf" > "${domaineconf}"
 
@@ -538,7 +535,6 @@ doblogotext(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-gd unzip sqlite php5-sqlite
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-blogotext.conf" > "${domaineconf}"
     phpuploadlimit
@@ -569,7 +565,6 @@ dottrss(){
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php-pear php5-pgsql postgresql postgresql-client postgresql-client-common php-db php5-curl php5-gd
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
 
     process "$STOCK/nginx-ttrss.conf" > "${domaineconf}"
 
@@ -608,7 +603,6 @@ dokriss() {
     local SSLCERT=""
 
     installapt php5 php-apc php5-fpm php5-curl nginx openssl ssl-cert
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-kriss.conf" > "${domaineconf}"
 
@@ -658,7 +652,6 @@ dopico(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip 
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-pico.conf" > "${domaineconf}"
 
@@ -698,7 +691,6 @@ doroundcube(){
     installapt nginx php5 php-pear php5-sqlite openssl ssl-cert php5-fpm php-apc php5-mcrypt php5-intl php5-dev php5-gd aspell libmagic-dev sqlite
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-roundcube.conf" > "${domaineconf}"
 
     # roundcube
@@ -733,7 +725,6 @@ doroundcube-pgsql(){
     installapt nginx php5 php-pear openssl ssl-cert php5-fpm php-apc php5-mcrypt php5-intl php5-dev php5-gd aspell libmagic-dev php5-pgsql postgresql postgresql-client postgresql-client-common 
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-roundcube.conf" > "${domaineconf}"
 
     # roundcube
@@ -774,7 +765,6 @@ dorainloop(){
     local SSLCERT=""
 
     installapt nginx php5 php-pear php5-sqlite openssl ssl-cert php5-fpm php-apc php5-curl unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-rainloop.conf" > "${domaineconf}"
 
@@ -809,7 +799,6 @@ dowallabag(){
     local SSLCERT=""
 
     installapt nginx php5 php5-sqlite openssl ssl-cert php5-fpm php-apc php5-curl unzip php5-mcrypt php5-tidy php5-cli curl
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-wallabag.conf" > "${domaineconf}"
 
@@ -847,7 +836,6 @@ local domaineconf="/etc/nginx/conf.d/jirafeau.conf"
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc 
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-jirafeau.conf" > "${domaineconf}"
     phpuploadlimit
@@ -886,7 +874,6 @@ dojyraphe(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc 
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-jyraphe.conf" > "${domaineconf}"
     phpuploadlimit
@@ -926,7 +913,6 @@ dozerobin(){
     local ROOTOFHTTP="$2"
 
     installapt nginx php5 php5-fpm php-apc php5-gd unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-zerobin.conf" > "${domaineconf}"
 
@@ -956,7 +942,6 @@ doshaarli(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-shaarli.conf" > "${domaineconf}"
 
@@ -986,7 +971,6 @@ dojotter(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-jotter.conf" > "${domaineconf}"
 
@@ -1024,7 +1008,6 @@ donononsenseforum(){
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-nononsenseforum.conf" > "${domaineconf}"
 
     # nononsenseforum
@@ -1061,7 +1044,6 @@ dofluxbb(){
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php-pear php5-pgsql postgresql postgresql-client postgresql-client-common php-db
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
 
     process "$STOCK/nginx-fluxbb.conf" > "${domaineconf}"
 
@@ -1102,7 +1084,6 @@ dophpbb(){
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-pgsql postgresql postgresql-client postgresql-client-common php5-gd imagemagick php5-curl unzip php-db
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
 
     process "$STOCK/nginx-phpbb.conf" > "${domaineconf}"
 
@@ -1149,7 +1130,6 @@ dopydio(){
     installapt nginx php5 php5-fpm php5-gd php5-cli php5-mcrypt unzip sqlite php5-sqlite php-db
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-pydio.conf" > "${domaineconf}"
     phpuploadlimit
 
@@ -1278,7 +1258,6 @@ dodokuwiki() {
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-gd imagemagick php-geshi
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-dokuwiki.conf" > "${domaineconf}"
     phpuploadlimit
 
@@ -1369,7 +1348,6 @@ dokanboard(){
     local SSLCERT=""
 
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip sqlite php5-sqlite
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-kanboard.conf" > "${domaineconf}"
 
@@ -1548,7 +1526,6 @@ dodotclear(){
     installapt nginx php5 php5-gd php5-fpm php5-sqlite php-db
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
     process "$STOCK/nginx-dotclear.conf" > "${domaineconf}"
     phpuploadlimit
 
@@ -1578,7 +1555,9 @@ dobaikal() {
 
     installapt php5 php-apc php5-fpm php5-sqlite sqlite nginx 
     cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
-    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    createwwwdata
+    mkdir -p "/$ROOTOFHTTP/"
+
     process "$STOCK/nginx-baikal.conf" > "${domaineconf}"
 
     wget -c -O $TEMP/baikal.tgz "http://baikal-server.com/get/baikal-regular-0.2.7.tgz"
