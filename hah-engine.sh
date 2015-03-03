@@ -1578,6 +1578,34 @@ EOF
 
 }
 
+doglobalinstall() {
+# install a preselection of services in subdirectories on one domain
+# doglobalinstall <nom d'hote> </repertoire/de/stockage> 
+
+    local NOMDHOTE="$1"
+    local ROOTOFHTTP="$2"
+
+    dosecurite
+    doowncloud "$NOMDHOTE" "$ROOTOFHTTP"/cloud
+    dokriss "$NOMDHOTE" "$ROOTOFHTTP"/kriss
+    doshaarli "$NOMDHOTE" "$ROOTOFHTTP"/shaarli
+    doblogotext "$NOMDHOTE" "$ROOTOFHTTP"/blog
+    dozerobin "$NOMDHOTE" "$ROOTOFHTTP"/zerobin
+    dodokuwiki "$NOMDHOTE" "$ROOTOFHTTP"/wiki
+
+rapport << EOF
+---
+Plusieurs services sont maintenant installés. Vous les retrouverez ici : 
+
+- Owncloud : http://$NOMDHOTE/cloud
+- Kriss : http://$NOMDHOTE/kriss
+- Shaarli : http://$NOMDHOTE/shaarli
+- Blogotext : http://$NOMDHOTE/blog
+- Zerobin : http://$NOMDHOTE/zerobin
+- Dokuwiki : http://$NOMDHOTE/wiki
+EOF
+}
+
 work() {
 # work <fichier contenant les tâches à réaliser>
     if [ ! -f "$1" ]; then
