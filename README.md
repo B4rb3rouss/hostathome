@@ -71,7 +71,8 @@ navigateur internet sont installés avec nginx comme serveur http.
   pages à lire plus tard,
 - Installation de [pico](http://pico.dev7studios.com/), un CMS très
   simple + son éditeur en ligne,
-- Installation de [jyraphe](http://home.gna.org/jyraphe/), pour déposer
+- Installation de [jyraphe](http://home.gna.org/jyraphe/) ou [jirafeau](https://gitlab.com/mojo42/Jirafeau/wikis/home)
+, pour déposer
   des fichiers trop lourds à envoyer par mail, et donner le lien de
   téléchargement à un ami,
 - Installation de forums ([NoNonsenseForum](http://camendesign.com/nononsense_forum) un forum minimaliste, [FluxBB](http://fluxbb.org/), [phpBB](https://www.phpbb.com/)),
@@ -82,8 +83,8 @@ navigateur internet sont installés avec nginx comme serveur http.
   [ZeroBin](http://sebsauvage.net/wiki/doku.php?id=php:zerobin), le pastebin de sebsauvage,
 - Installation d'une seedbox torrent
   ([rtorrent](http://libtorrent.rakshasa.no/) et
-  [rutorrent](https://code.google.com/p/rutorrent/)),
-  ou avec [transmission](https://www.transmissionbt.com).
+  [rutorrent](https://code.google.com/p/rutorrent/)), ou avec
+  [transmission](https://www.transmissionbt.com).
 - Installation de wikis comme [DokuWiki](https://www.dokuwiki.org/dokuwiki) ou
   [MediaWiki](https://www.mediawiki.org),
 - Installation de gestionnaires de listes de tâches : 
