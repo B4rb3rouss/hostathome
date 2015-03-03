@@ -240,17 +240,18 @@ dialogmenu() {
                 case "$line" in 
                     "preparation") echo "dopreparation" >> "$tmpwork" ;;
                     "globale")
-                        dialog --msgbox "Plusieurs services vont être automatiquement installés.\n
-                        Répondez aux questions suivantes puis profitez de:\n
-                        - Owncloud : Votre cloud\n
-                        - Kriss : Un lecteur de flux rss\n
-                        - Shaarli : Pour partager vos liens/prendre des notes\n
-                        - Blogotext : Votre blog\n
-                        - Zerobin : Pour coller du texte/discuter de façon privée\n
-                        - Dokuwiki : Votre wiki\n" 20 60
+                        dialog --msgbox "Plusieurs services vont être automatiquement installés.\n\
+
+    Répondez aux questions suivantes puis profitez de:\n\
+    - Owncloud : Votre cloud\n\
+    - Kriss : Un lecteur de flux rss\n\
+    - Shaarli : Pour partager vos liens/prendre des notes\n\
+    - Blogotext : Votre blog\n\
+    - Zerobin : Pour coller du texte/discuter de façon privée\n\
+    - Dokuwiki : Votre wiki" 20 60
                         info_ssl
                         info_site COMMAND "Services standards" 
-                        echo "doglobalinstall" $COMMAND" >> "$tmpwork"
+                        echo "doglobalinstall $COMMAND" >> "$tmpwork"
                         ;;
                     "http_nginx") 
                         info_nginx COMMAND 
