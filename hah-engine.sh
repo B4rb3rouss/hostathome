@@ -1222,7 +1222,7 @@ dotransmission(){
 
     service transmission-daemon stop
     process "$STOCK/transmission-settings.json" > /etc/transmission-daemon/settings.json
-    chown root:root /etc/transmission-daemon/settings.json
+    chown debian-transmission:debian-transmission /etc/transmission-daemon/settings.json
     chmod 600 /etc/transmission-daemon/settings.json
 
     dosslcert "$NOMDHOTE"
