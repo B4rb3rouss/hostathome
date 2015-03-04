@@ -470,7 +470,7 @@ doowncloud(){
 
     # owncloud
     echo -e "Téléchargeons le dernier owncloud"
-    wget -c -O $TEMP/lastowncloud.tar.bz2 "http://download.owncloud.org/community/owncloud-7.0.1.tar.bz2"
+    wget -c -O $TEMP/lastowncloud.tar.bz2 "https://download.owncloud.org/community/owncloud-8.0.0.tar.bz2"
     tar xvjf $TEMP/lastowncloud.tar.bz2 -C "/$ROOTOFHTTP"
     mkdir -p "/$ROOTOFHTTP/owncloud/"{apps,data,config}
     chown -R www-data:www-data "/$ROOTOFHTTP/owncloud/"{apps,data,config}
