@@ -800,9 +800,7 @@ dorainloop(){
     # rainloop
     echo "Téléchargeons le dernier rainloop"
     wget -c -O $TEMP/rainloop.zip "http://repository.rainloop.net/v2/webmail/rainloop-latest.zip"
-    mkdir -p $TEMP/rainlooptmp
-    unzip $TEMP/rainloop.zip -d $TEMP/rainlooptmp
-    mv $TEMP/rainlooptmp/*/* "/$ROOTOFHTTP"
+    unzip $TEMP/rainloop.zip -d "/$ROOTOFHTTP"
 
     finwebserver 0 "/$ROOTOFHTTP" 
 
