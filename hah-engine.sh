@@ -1577,12 +1577,12 @@ dobaikal() {
     local domaineconf="/etc/nginx/conf.d/baikal.conf"
     local NOMDHOTE="$1"
     local ROOTOFHTTP="$2"
+    local SSLCERT=""
 
     installapt php5 php-apc php5-fpm php5-sqlite sqlite nginx 
     cp -v "$STOCK/nginx-php.conf" /etc/nginx/conf.d/php
-    createwwwdata
-    mkdir -p "/$ROOTOFHTTP/"
 
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-baikal.conf" > "${domaineconf}"
 
     wget -c -O $TEMP/baikal.tgz "http://baikal-server.com/get/baikal-regular-0.2.7.tgz"
