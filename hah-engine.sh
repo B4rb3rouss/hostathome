@@ -1612,8 +1612,6 @@ doglobalinstall() {
     local ROOTOFHTTP="$2"
     local SSLCERT=""
 
-    dosecurite
-
     installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip php5-curl php5-gd sqlite php5-sqlite imagemagick php-geshi
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
