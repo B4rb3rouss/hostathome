@@ -28,6 +28,7 @@ un nom de domaine. Pour plus d'infos, voir [cette partie](#DNS).
 
 ## Sommaire
 
+- [Sécurité par défaut](#secu)
 - [Services proposés](#services)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
@@ -38,6 +39,18 @@ un nom de domaine. Pour plus d'infos, voir [cette partie](#DNS).
 - [Astuces](#DNS)
 - [Liens](#liens)
 - [Captures d'écran](#scrot)
+
+
+## Sécurité par défaut <a id="secu"></a>
+La fonction qui permet de sécuriser le serveur installer et configure
+par défaut : 
+
+- [Fail2ban](http://www.isalo.org/wiki.debian-fr/Fail2ban)
+- [Portsentry](http://www.isalo.org/wiki.debian-fr/index.php?title=Portsentry)
+- Le parefeu ufw. Voir [sur ce
+  wiki](http://wiki.debian-facile.org/doc:systeme:ufw) pour des
+  explications sur la modifications de règles.
+- Rkhunter pour lutter contre les rootkits.
 
 ## Services proposés <a id="services"></a>
 Actuellement, le script permet d'installer et d'*auto-héberger* les
