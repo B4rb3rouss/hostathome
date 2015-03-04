@@ -66,6 +66,9 @@ navigateur internet sont installés avec nginx comme serveur http.
     - Blogotext : Votre blog
     - Zerobin : Pour coller du texte/discuter de façon privée
     - Dokuwiki : Votre wiki
+
+Une page d'accueil sera créée pour accéder aux services. 
+
 - un site web via http et/ou https (nginx),
 - Un serveur de partage de fichiers avec sftp,
 - Serveur VPN avec [OpenVPN](http://openvpn.net),
