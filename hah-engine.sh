@@ -1610,7 +1610,6 @@ doglobalinstall() {
     local ROOTOFHTTP="$2"
 
     dosecurite
-    doowncloud "$NOMDHOTE" "$ROOTOFHTTP"/cloud
     dokriss "$NOMDHOTE" "$ROOTOFHTTP"/kriss
     doshaarli "$NOMDHOTE" "$ROOTOFHTTP"/liens
     doblogotext "$NOMDHOTE" "$ROOTOFHTTP"/blog
@@ -1621,7 +1620,6 @@ rapport << EOF
 ---
 Plusieurs services sont maintenant installés. Vous les retrouverez ici : 
 
-- Owncloud : http://$NOMDHOTE/cloud
 - Kriss : http://$NOMDHOTE/kriss
 - Shaarli : http://$NOMDHOTE/liens
 - Blogotext : http://$NOMDHOTE/blog
