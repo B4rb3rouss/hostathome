@@ -1602,6 +1602,36 @@ EOF
 
 }
 
+
+dopicloud(){
+    #dopicloud <nom d'hote> </dossier/contenant/pluxml>
+    local domaineconf="/etc/nginx/conf.d/picloud.conf"
+    local NOMDHOTE="$1"
+    local ROOTOFHTTP="$2"
+    local SSLCERT=""
+
+    installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-gd 
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    process "$STOCK/nginx-picloud.conf" > "${domaineconf}"
+
+    # picloud
+    echo -e "Téléchargeons le dernier picloud"
+    wget -O $TEMP/lastpicloud.tar.gz "https://github.com/DMeloni/picloud/tarball/master"
+    mkdir -p $TEMP/picloudtmp
+    tar xvf $TEMP/lastpicloud.tar.gz -C $TEMP/picloudtmp
+    mv $TEMP/picloudtmp/*/* "/$ROOTOFHTTP"
+
+    finwebserver 0 "/$ROOTOFHTTP" 
+
+    rapport << EOF
+---
+picloud installé
+Ouvrez dans un navigateur https://$NOMDHOTE pour terminer la configuration
+
+Site : http://dmeloni.github.io/picloud/
+EOF
+}
+
 doglobalinstall() {
 # install a preselection of services in subdirectories on one domain
 # doglobalinstall <nom d'hote> </repertoire/de/stockage> 
