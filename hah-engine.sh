@@ -1,9 +1,9 @@
 #!/bin/bash
 # hah-engine.sh : install your own server at home
 # Licence:  GPLv3
-# Author:  © Xavier Cartron (XC) 2013 2014, thuban@yeuxdelibad.net
+# Author:  © Xavier Cartron (XC) 2013 2014 2015, thuban@yeuxdelibad.net
 # http://yeuxdelibad.net/Programmation/Hostathome.html
-VERSION="0.8"
+VERSION="0.9"
 
 # files
 LOGFILE="$CURDIR/hah-$(date +%F-%H-%M).log"
@@ -63,7 +63,9 @@ assign () {
   read -rd '' "$1"
 }
 
-enableport() { ufw allow $1 }
+enableport() {
+    ufw allow $1
+}
 
 # Prepare installation
 dopreparation() {
@@ -936,7 +938,7 @@ dozerobin(){
     local NOMDHOTE="$1"
     local ROOTOFHTTP="$2"
 
-    installapt nginx php5 php5-fpm php-apc php5-gd unzip
+    installapt nginx php5 php5-fpm php-apc unzip
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-zerobin.conf" > "${domaineconf}"
 
@@ -1602,54 +1604,80 @@ EOF
 
 }
 
-
-dopicloud(){
-    #dopicloud <nom d'hote> </dossier/contenant/pluxml>
-    local domaineconf="/etc/nginx/conf.d/picloud.conf"
-    local NOMDHOTE="$1"
-    local ROOTOFHTTP="$2"
-    local SSLCERT=""
-
-    installapt nginx php5 openssl ssl-cert php5-fpm php-apc php5-gd 
-    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
-    process "$STOCK/nginx-picloud.conf" > "${domaineconf}"
-
-    # picloud
-    echo -e "Téléchargeons le dernier picloud"
-    wget -O $TEMP/lastpicloud.tar.gz "https://github.com/DMeloni/picloud/tarball/master"
-    mkdir -p $TEMP/picloudtmp
-    tar xvf $TEMP/lastpicloud.tar.gz -C $TEMP/picloudtmp
-    mv $TEMP/picloudtmp/*/* "/$ROOTOFHTTP"
-
-    finwebserver 0 "/$ROOTOFHTTP" 
-
-    rapport << EOF
----
-picloud installé
-Ouvrez dans un navigateur https://$NOMDHOTE pour terminer la configuration
-
-Site : http://dmeloni.github.io/picloud/
-EOF
-}
-
 doglobalinstall() {
 # install a preselection of services in subdirectories on one domain
 # doglobalinstall <nom d'hote> </repertoire/de/stockage> 
 
     local NOMDHOTE="$1"
     local ROOTOFHTTP="$2"
+    local SSLCERT=""
 
     dosecurite
-    dokriss "$NOMDHOTE" "$ROOTOFHTTP"/kriss
-    doshaarli "$NOMDHOTE" "$ROOTOFHTTP"/liens
-    doblogotext "$NOMDHOTE" "$ROOTOFHTTP"/blog
-    dozerobin "$NOMDHOTE" "$ROOTOFHTTP"/zerobin
-    dodokuwiki "$NOMDHOTE" "$ROOTOFHTTP"/wiki
+
+    installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip php5-curl php5-gd sqlite php5-sqlite imagemagick php-geshi
+
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    process "$STOCK/nginx-global.conf" > /etc/nginx/conf.d/global.conf
+    phpuploadlimit
+
+    # dropcenter
+    mkdir -p "$ROOTOFHTTP/drop"
+    echo -e "Téléchargeons le dernier dropcenter"
+    wget -O $TEMP/lastdropcenter.zip "https://github.com/ldleman/dropcenter/archive/master.zip"
+    mkdir $TEMP/dropcentertmp
+    unzip $TEMP/lastdropcenter.zip -d "$TEMP/dropcentertmp"
+    mv "$TEMP"/dropcentertmp/dropcenter-master/* "/$ROOTOFHTTP"/drop
+    chmod 755 "/$ROOTOFHTTP"/dropcenter-master/uploads
+
+    #kriss
+    mkdir -p "$ROOTOFHTTP"/kriss
+    echo "Téléchargeons le dernier kriss"
+    wget -O "/$ROOTOFHTTP/kriss/index.php" http://raw.github.com/tontof/kriss_feed/master/index.php
+
+    #shaarli
+    echo "Téléchargeons le dernier shaarli"
+    wget -c -O $TEMP/shaarli.zip "https://github.com/sebsauvage/Shaarli/archive/master.zip"
+    mkdir -p $TEMP/shaarli
+    unzip $TEMP/shaarli.zip -d $TEMP/shaarli
+    mkdir -p "$ROOTOFHTTP"/liens
+    mv $TEMP/shaarli/Shaarli-master/* "/$ROOTOFHTTP"/liens
+
+    #blogotext
+    echo "Téléchargeons le dernier blogotext"
+    wget -O $TEMP/lastblogotext.zip "http://lehollandaisvolant.net/blogotext/blogotext.zip"
+    mkdir -p $TEMP/blogotexttmp
+    unzip $TEMP/lastblogotext.zip -d $TEMP/blogotexttmp
+    mkdir -p "/$ROOTOFHTTP"/blog
+    mv $TEMP/blogotexttmp/*/* "$ROOTOFHTTP"/blog/
+
+    #zerobin
+    echo "Téléchargeons le dernier zerobin"
+    wget -c -O $TEMP/zerobin.zip "https://github.com/sebsauvage/ZeroBin/archive/master.zip"
+    mkdir -p $TEMP/zerobin
+    unzip $TEMP/zerobin.zip -d $TEMP/zerobin
+    mkdir -p "/$ROOTOFHTTP"/zerobin
+    mv $TEMP/zerobin/ZeroBin-master/* "/$ROOTOFHTTP"/zerobin
+
+    #dokuwiki
+    echo "Téléchargeons le dernier dokuwiki"
+    mkdir -p $TEMP/dokuwikitmp
+    wget -c -O $TEMP/dokuwiki.tgz "http://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz"
+    tar xvf $TEMP/dokuwiki.tgz -C "$TEMP/dokuwikitmp"
+    mkdir -p "/$ROOTOFHTTP"/wiki
+    mv $TEMP/dokuwikitmp/dokuwiki-*/* "/$ROOTOFHTTP"/wiki
+
+    cp $STOCK/global-welcome.html "$ROOTOFHTTP/index.html"
+    cp -r $STOCK/logos "$ROOTOFHTTP/"
+
+    chown -R www-data:www-data "/$ROOTOFHTTP"
+    service nginx restart
+    service php5-fpm restart
 
 rapport << EOF
 ---
 Plusieurs services sont maintenant installés. Vous les retrouverez ici : 
 
+- Dropcenter : http://$NOMDHOTE/drop
 - Kriss : http://$NOMDHOTE/kriss
 - Shaarli : http://$NOMDHOTE/liens
 - Blogotext : http://$NOMDHOTE/blog

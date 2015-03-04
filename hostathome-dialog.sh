@@ -194,7 +194,7 @@ dialogmenu() {
         --checklist 'Tâche(s) à accomplir: \n(<espace> pour cocher, <↑> et <↓> pour déplacer le curseur, <tabulation> pour choisir le bouton, <Entrée> pour valider)' 25 65 18 \
         preparation "Prépare le serveur en le mettant à jour" on\
         securite "sécurité minimale du serveur" on\
-        globale "[Debutant]Installation de plusieurs services standards" off\
+        globale "[Debutant]Services web standards" off\
         http_nginx "Installer un serveur http(s) (nginx)" off\
         sftp "Partage de fichiers sécurisé avec sftp" off\
         openvpn "Serveur vpn" off\
@@ -241,16 +241,15 @@ dialogmenu() {
                     "preparation") echo "dopreparation" >> "$tmpwork" ;;
                     "globale")
                         dialog --msgbox "Plusieurs services vont être automatiquement installés.\n\
-
     Répondez aux questions suivantes puis profitez de:\n\
-    - Owncloud : Votre cloud\n\
+    - Dropcenter : Mettre des fichiers en ligne (pseudo-cloud)\n\
     - Kriss : Un lecteur de flux rss\n\
     - Shaarli : Pour partager vos liens/prendre des notes\n\
     - Blogotext : Votre blog\n\
     - Zerobin : Pour coller du texte/discuter de façon privée\n\
     - Dokuwiki : Votre wiki" 20 60
                         info_ssl
-                        info_site COMMAND "Services standards" 
+                        info_site COMMAND "services_standards" 
                         echo "doglobalinstall $COMMAND" >> "$tmpwork"
                         ;;
                     "http_nginx") 

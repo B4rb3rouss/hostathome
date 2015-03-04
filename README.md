@@ -58,6 +58,14 @@ services listés ci-dessous. D'autres viendront à l'avenir selon vos
 suggestions. Notez que toutes les "webapps", services accessibles via
 navigateur internet sont installés avec nginx comme serveur http.
 
+- Installation de services stantards sur un seul nom de domaine. Les
+  services sont : 
+    - Dropcenter : Mettre des fichiers en ligne (pseudo-cloud) 
+    - Kriss : Un lecteur de flux rss
+    - Shaarli : Pour partager vos liens/prendre des notes
+    - Blogotext : Votre blog
+    - Zerobin : Pour coller du texte/discuter de façon privée
+    - Dokuwiki : Votre wiki
 - un site web via http et/ou https (nginx),
 - Un serveur de partage de fichiers avec sftp,
 - Serveur VPN avec [OpenVPN](http://openvpn.net),
@@ -69,7 +77,9 @@ navigateur internet sont installés avec nginx comme serveur http.
   ([squirrelmail](http://squirrelmail.org), [rainloop](http://rainloop.net)) ou [roundcube](http://roundcube.net/),
 - Un serveur xmpp (jabber) avec [prosody](https://prosody.im),
 - Installation de [dropcenter](http://projet.idleman.fr/dropcenter/)
-  pour partager les fichiers,
+  pour partager les fichiers. N'hésitez pas à installer ensuite
+  [dropnew](http://projet.idleman.fr/dropcenter/?page=DropNews) pour
+  synchroniser vos fichiers,
 - Installation de [pluxml](http://www.pluxml.org/) un moteur de
   blog/CMS,
 - Installation de
