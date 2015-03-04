@@ -67,7 +67,10 @@ navigateur internet sont installés avec nginx comme serveur http.
     - Zerobin : Pour coller du texte/discuter de façon privée
     - Dokuwiki : Votre wiki
 
-Une page d'accueil sera créée pour accéder aux services. 
+Une page d'accueil sera créée pour accéder aux services : 
+
+[![page_accueil_hostathome-thumb.jpg](http://yeuxdelibad.net/Images/page_accueil_hostathome-thumb.jpg)](/Images/page_accueil_hostathome.png)
+
 
 - un site web via http et/ou https (nginx),
 - Un serveur de partage de fichiers avec sftp,
@@ -124,11 +127,10 @@ Une page d'accueil sera créée pour accéder aux services.
 ## Installation <a id="installation"></a>
 
 Récupérez la dernière archive
-[hostathome-last.tar.gz](http://yeuxdelibad.net/DL/hostathome-last.tar.gz) et décompressez-la avec la commande  : 
 
-    wget http://yeuxdelibad.net/DL/hostathome-last.tar.gz
-    tar -xvf hostathome-last.tar.gz
-    cd hostathome
+    wget https://github.com/Ikse/hostathome/archive/master.zip
+    unzip master.zip
+    cd hostathome-master
     ./hostathome-dialog.sh
 
 Pour profiter de la toute dernière version du script,
