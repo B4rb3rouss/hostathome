@@ -2,7 +2,7 @@
 # hah-engine.sh : install your own server at home
 # Licence:  GPLv3
 # Author:  © Xavier Cartron (XC) 2013 2014, thuban@yeuxdelibad.net
-# http://hg.yeuxdelibad.net/hostathome
+# http://yeuxdelibad.net/Programmation/Hostathome.html
 VERSION="0.8"
 
 # files
@@ -63,7 +63,7 @@ assign () {
   read -rd '' "$1"
 }
 
-enableport () { ufw allow $1 }
+enableport() { ufw allow $1 }
 
 # Prepare installation
 dopreparation() {
@@ -277,7 +277,7 @@ EOF
 Configurez vos champs DNS :
 Ajoutez un champ DKIM ou TXT contenant le contenu de /etc/dkim/mail.txt suivant:
     ---
-mail._domainkey.$DOMAIN"
+mail._domainkey.$DOMAIN
 $(</etc/dkim/mail.txt)
     ---
 Ce contenu sera présent dans le fichier de logs et d'information $RAPPORT
@@ -480,7 +480,7 @@ doowncloud(){
 
     rapport << EOF
 ---
-owncloud installé"
+owncloud installé
 Ouvrez dans un navigateur https://$NOMDHOTE pour terminer la configuration
 
 * Site : http://owncloud.org
@@ -1663,5 +1663,4 @@ showhelp() {
     echo "-h : Affiche ce message d'aide"
     exit 0
 }
-
 
