@@ -568,6 +568,9 @@ doblogotext(){
     echo "Téléchargeons le dernier blogotext"
     wget -O $TEMP/lastblogotext.zip "http://lehollandaisvolant.net/blogotext/blogotext.zip"
     unzip $TEMP/lastblogotext.zip -d "/$ROOTOFHTTP"
+    #themes blogotext
+    wget -O $TEMP/blogotext-themes.tar.gz "http://yeuxdelibad.net/DL/blogotext-themes.tar.gz"
+    tar xvf $TEMP/blogotext-themes.tar.gz -C "$ROOTOFHTTP"/themes/
 
     finwebserver 0 "/$ROOTOFHTTP" 
 
@@ -1647,6 +1650,10 @@ doglobalinstall() {
     unzip $TEMP/lastblogotext.zip -d $TEMP/blogotexttmp
     mkdir -p "/$ROOTOFHTTP"/blog
     mv $TEMP/blogotexttmp/*/* "$ROOTOFHTTP"/blog/
+
+    #themes blogotext
+    wget -O $TEMP/blogotext-themes.tar.gz "http://yeuxdelibad.net/DL/blogotext-themes.tar.gz"
+    tar xvf $TEMP/blogotext-themes.tar.gz -C "$ROOTOFHTTP"/blog/themes/
 
     #zerobin
     echo "Téléchargeons le dernier zerobin"
