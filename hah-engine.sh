@@ -63,6 +63,8 @@ assign () {
   read -rd '' "$1"
 }
 
+enableport () { ufw allow $1 }
+
 # Prepare installation
 dopreparation() {
     apt-get update
@@ -109,7 +111,9 @@ prepwebserver() {
         SSLCERT="
         ssl_certificate /etc/ssl/private/$3.pem;
         ssl_certificate_key /etc/ssl/private/$3.pem;"
+        enableport "443/tcp"
     fi
+    enableport "80/tcp"
 }
 
 finwebserver() {
@@ -186,6 +190,7 @@ dohttp_nginx() {
             SSL="
     ssl_certificate /etc/ssl/private/$NOMDHOTE.pem;
     ssl_certificate_key /etc/ssl/private/$NOMDHOTE.pem;"
+            enableport "443/tcp"
             ;;
         "3") echo "http -> https"
             dosslcert "$NOMDHOTE"
@@ -193,6 +198,8 @@ dohttp_nginx() {
             SSL="
     ssl_certificate /etc/ssl/private/$NOMDHOTE.pem;
     ssl_certificate_key /etc/ssl/private/$NOMDHOTE.pem;"
+            enableport "443/tcp"
+            enableport "80/tcp"
             assign REWRITEHTTPS <<EOF
 server {
     listen 80;
@@ -203,6 +210,7 @@ EOF
             ;;
         *) echo "http sans SSL" 
             SSL=""
+            enableport "80/tcp"
             ;;
     esac
 
@@ -258,6 +266,12 @@ EOF
     process "$STOCK/opendkim.conf" > /etc/opendkim.conf
 
     echo 'SOCKET="inet:8891:localhost"' >> /etc/default/opendkim
+
+    # ports
+    enableport "25/tcp"
+    enableport "587/tcp"
+    enableport "143/tcp"
+    enableport "993/tcp"
 
     rapport <<EOF
 Configurez vos champs DNS :
@@ -344,6 +358,7 @@ dosftp() {
                 
     process "$STOCK/sshd_config" > "/etc/ssh/sshd_config"
 
+    enableport "$PORT/tcp"
     service ssh restart
 
     rapport << EOF
@@ -355,7 +370,15 @@ EOF
 }
 
 dosecurite() {
-    installapt fail2ban portsentry rkhunter
+    installapt fail2ban portsentry rkhunter ufw
+
+    if [ -f /etc/ssh/sshd_config ]; then
+        SSHPORT="$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f 2-)"
+    fi
+    ufw default deny
+    ufw allow $SSHPORT/tcp
+    ufw enable
+
 
     #fail2ban
     if ! [ -f /etc/fail2ban/jail.local ]; then
@@ -365,10 +388,8 @@ dosecurite() {
         cp -v "$STOCK"/filter/nginx-noscript.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-auth.conf /etc/fail2ban/filter.d/
         cp -v "$STOCK"/filter/nginx-login.conf /etc/fail2ban/filter.d/
-
         #ssh
-        if [ -f /etc/ssh/sshd_config ]; then
-            SSHPORT="$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f 2-)"
+        if [ -z "$SSHPORT" ]; then
             sed -i "s/port.*= ssh/port  = ssh,$SSHPORT/g" /etc/fail2ban/jail.local
         fi
     fi
@@ -419,6 +440,9 @@ EOF
     local SSLCONFIG="\"/etc/ssl/private/$NOMDHOTE.pem\""
 
     process "$STOCK/prosody.cfg.lua" > "$prosodyconf"
+
+    enableport "5222/tcp"
+    enableport "5269/tcp"
 
     service prosody restart
 
@@ -631,6 +655,7 @@ dotor() {
 
 
     process "$STOCK/torrc" > /etc/tor/torrc
+    enableport "9001/tcp"
     service tor restart
 
     rapport << EOF
@@ -1499,8 +1524,7 @@ doopenvpn(){
         mv "$TEMP/ovpn-$CLIENT.tar.gz" $CURDIR/
     done
 
-
-
+    enableport "$PORT/tcp"
 
 rapport << EOF
 ---
@@ -1588,7 +1612,7 @@ doglobalinstall() {
     dosecurite
     doowncloud "$NOMDHOTE" "$ROOTOFHTTP"/cloud
     dokriss "$NOMDHOTE" "$ROOTOFHTTP"/kriss
-    doshaarli "$NOMDHOTE" "$ROOTOFHTTP"/shaarli
+    doshaarli "$NOMDHOTE" "$ROOTOFHTTP"/liens
     doblogotext "$NOMDHOTE" "$ROOTOFHTTP"/blog
     dozerobin "$NOMDHOTE" "$ROOTOFHTTP"/zerobin
     dodokuwiki "$NOMDHOTE" "$ROOTOFHTTP"/wiki
@@ -1599,7 +1623,7 @@ Plusieurs services sont maintenant installés. Vous les retrouverez ici :
 
 - Owncloud : http://$NOMDHOTE/cloud
 - Kriss : http://$NOMDHOTE/kriss
-- Shaarli : http://$NOMDHOTE/shaarli
+- Shaarli : http://$NOMDHOTE/liens
 - Blogotext : http://$NOMDHOTE/blog
 - Zerobin : http://$NOMDHOTE/zerobin
 - Dokuwiki : http://$NOMDHOTE/wiki
