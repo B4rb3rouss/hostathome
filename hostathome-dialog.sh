@@ -247,6 +247,7 @@ dialogmenu() {
     - Shaarli : Pour partager vos liens/prendre des notes\n\
     - Blogotext : Votre blog\n\
     - Zerobin : Pour coller du texte/discuter de façon privée\n\
+    - Wallabag : Pour sauvegarder des pages à lire \n\
     - Dokuwiki : Votre wiki" 20 60
                         info_ssl
                         info_site COMMAND "services_standards" 

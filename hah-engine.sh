@@ -1615,7 +1615,7 @@ doglobalinstall() {
     local ROOTOFHTTP="$2"
     local SSLCERT=""
 
-    installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip php5-curl php5-gd sqlite php5-sqlite imagemagick php-geshi
+    installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip php5-curl php5-gd sqlite php5-sqlite imagemagick php-geshi php5-mcrypt php5-tidy php5-cli curl
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-global.conf" > /etc/nginx/conf.d/global.conf
@@ -1671,6 +1671,22 @@ doglobalinstall() {
     mkdir -p "/$ROOTOFHTTP"/wiki
     mv $TEMP/dokuwikitmp/dokuwiki-*/* "/$ROOTOFHTTP"/wiki
 
+    #wallabag
+
+    # wallabag
+    echo "Téléchargeons le dernier wallabag"
+    wget -c -O $TEMP/wallabag.zip "http://wllbg.org/latest"
+    mkdir -p $TEMP/wallabagtmp
+    unzip $TEMP/wallabag.zip -d $TEMP/wallabagtmp
+    mkdir -p "/$ROOTOFHTTP"/wallabag
+    mv $TEMP/wallabagtmp/wallabag-*/* "/$ROOTOFHTTP"/wallabag
+
+    # Twig
+    cd "$ROOTOFHTTP"/wallabag
+    curl -s http://getcomposer.org/installer | php
+    php composer.phar install
+
+    # page d'accueil
     cp $STOCK/global-welcome.html "$ROOTOFHTTP/index.html"
     cp -r $STOCK/logos "$ROOTOFHTTP/"
 
@@ -1688,6 +1704,7 @@ Plusieurs services sont maintenant installés. Vous les retrouverez ici :
 - Blogotext : http://$NOMDHOTE/blog
 - Zerobin : http://$NOMDHOTE/zerobin
 - Dokuwiki : http://$NOMDHOTE/wiki
+- Wallabag : http://$NOMDHOTE/wallabag
 EOF
 }
 

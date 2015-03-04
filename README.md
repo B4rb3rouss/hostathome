@@ -66,6 +66,7 @@ navigateur internet sont installés avec nginx comme serveur http.
     - Blogotext : Votre blog
     - Zerobin : Pour coller du texte/discuter de façon privée
     - Dokuwiki : Votre wiki
+    - Wallabag : Pour sauver des pages et les lire plus tard
 
 Une page d'accueil sera créée pour accéder aux services : 
 
