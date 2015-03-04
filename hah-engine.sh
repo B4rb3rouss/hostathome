@@ -802,7 +802,7 @@ dorainloop(){
     wget -c -O $TEMP/rainloop.zip "http://repository.rainloop.net/v2/webmail/rainloop-latest.zip"
     mkdir -p $TEMP/rainlooptmp
     unzip $TEMP/rainloop.zip -d $TEMP/rainlooptmp
-    mv $TEMP/rainlooptmp/rainloop-webmail-master/* "/$ROOTOFHTTP"
+    mv $TEMP/rainlooptmp/*/* "/$ROOTOFHTTP"
 
     finwebserver 0 "/$ROOTOFHTTP" 
 
@@ -1707,6 +1707,25 @@ Plusieurs services sont maintenant installés. Vous les retrouverez ici :
 - Wallabag : http://$NOMDHOTE/wallabag
 EOF
 }
+
+doglobalinstall+() {
+# install a preselection of services in subdirectories on one domain
+# doglobalinstall+ <nom d'hote> <domaine (champ A)> </repertoire/de/stockage> 
+    local NOMDHOTE="$1"
+    local DOMAIN="$2"
+    local ROOTOFHTTP="$3"
+    doglobalinstall "$NOMDHOTE" "$ROOTOFHTTP"
+    dopostfix "$NOMDHOTE" "$DOMAIN"
+
+    # page d'accueil
+    cp $STOCK/global-welcomeplus.html "$ROOTOFHTTP/index.html"
+    cp -r $STOCK/logos "$ROOTOFHTTP/"
+
+    chown -R www-data:www-data "/$ROOTOFHTTP"
+    service nginx restart
+    service php5-fpm restart
+}
+
 
 work() {
 # work <fichier contenant les tâches à réaliser>
