@@ -250,6 +250,7 @@ dialogmenu() {
     - Blogotext : Votre blog\n\
     - Zerobin : Pour coller du texte/discuter de façon privée\n\
     - Wallabag : Pour sauvegarder des pages à lire \n\
+    - Mycryptochat : Pour discuter secrètement (ou pas) \n\n
     - Dokuwiki : Votre wiki" 20 60
                         info_ssl
                         info_site COMMAND "services_standards" 
@@ -265,6 +266,7 @@ dialogmenu() {
     - Zerobin : Pour coller du texte/discuter de façon privée\n\
     - Wallabag : Pour sauvegarder des pages à lire \n\
     - Postfix : serveur mail \n\
+    - Mycryptochat : Pour discuter secrètement (ou pas) \n\n
     - Squirrelmail : webmail pour consulter vos mails \n\
     - Dokuwiki : Votre wiki" 20 60
 

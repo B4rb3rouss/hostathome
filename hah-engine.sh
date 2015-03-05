@@ -1699,7 +1699,16 @@ doglobalinstall() {
     mkdir -p "/$ROOTOFHTTP"/wiki
     mv $TEMP/dokuwikitmp/dokuwiki-*/* "/$ROOTOFHTTP"/wiki
 
-    #wallabag
+
+    # mycryptochat
+    echo "Téléchargeons le dernier mycryptochat"
+    mkdir -p "/$ROOTOFHTTP"/tchat
+    wget -c -O $TEMP/mycryptochat.zip "https://github.com/HowTommy/mycryptochat/archive/master.zip"
+    mkdir -p $TEMP/mycryptochat
+    unzip $TEMP/mycryptochat.zip -d $TEMP/mycryptochat
+    mv $TEMP/mycryptochat/*/* "/$ROOTOFHTTP"/tchat/
+
+    sed -i "s/f-rjng24!1r5TRHHgnjrt/$(date +%s |md5sum |cut -d' ' -f1)/g" "/$ROOTOFHTTP"/tchat/inc/constants.php
 
     # wallabag
     echo "Téléchargeons le dernier wallabag"
@@ -1733,6 +1742,7 @@ Plusieurs services sont maintenant installés. Vous les retrouverez ici :
 - Zerobin : http://$NOMDHOTE/zerobin
 - Dokuwiki : http://$NOMDHOTE/wiki
 - Wallabag : http://$NOMDHOTE/wallabag
+- Mycryptochat : http://$NOMDHOTE/tchat
 EOF
 }
 
