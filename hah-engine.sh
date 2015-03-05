@@ -1621,6 +1621,8 @@ domycryptochat() {
     mkdir -p $TEMP/mycryptochat
     unzip $TEMP/mycryptochat.zip -d $TEMP/mycryptochat
     mv $TEMP/mycryptochat/*/* "/$ROOTOFHTTP"
+
+    sed -i "s/f-rjng24!1r5TRHHgnjrt/$(date +%s |md5sum |cut -d' ' -f1)/g" "/$ROOTOFHTTP"/inc/constants.php
     
     finwebserver 0 "/$ROOTOFHTTP" 
 

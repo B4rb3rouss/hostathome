@@ -218,6 +218,7 @@ dialogmenu() {
         jotter "Gestion simple de listes todo" off\
         kanboard "Tableau de tâches" off\
         ZeroBin "Pastebin/discussion encrypté" off\
+        Mycryptochat "Discussion cryptée" off\
         Shaarli "Clone de delicious" off\
         NoNonsenseForum "Un forum très simple" off\
         fluxBB "Un forum" off\
@@ -387,6 +388,10 @@ dialogmenu() {
                     "ZeroBin")
                         info_site COMMAND "ZeroBin" 
                         echo "dozerobin $COMMAND" >> "$tmpwork"
+                        ;;
+                    "Mycryptochat")
+                        info_site COMMAND "Mycryptochat" 
+                        echo "domycryptochat $COMMAND" >> "$tmpwork"
                         ;;
                     "Shaarli")
                         info_ssl
