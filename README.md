@@ -70,7 +70,7 @@ navigateur internet sont installés avec nginx comme serveur http.
 
 Une page d'accueil sera créée pour accéder aux services : 
 
-[![page_accueil_hostathome-thumb.jpg](http://yeuxdelibad.net/Images/page_accueil_hostathome-thumb.jpg)](/Images/page_accueil_hostathome.png)
+[![page_accueil_hostathome-thumb.jpg](http://yeuxdelibad.net/Images/page_accueil_hostathome-thumb.jpg)](http://yeuxdelibad.net/Images/page_accueil_hostathome.png)
 
 
 - un site web via http et/ou https (nginx),
@@ -286,6 +286,6 @@ routeur et parefeu](http://wiki.auto-hebergement.fr/r%C3%A9seau/routeur/configur
 
 Petites captures d'écran pour vous montrer : 
 
-[![hostathome1-thumb.jpg](/Images/hostathome1-thumb.jpg)](/Images/hostathome1.png)
-[![hostathome2-thumb.jpg](/Images/hostathome2-thumb.jpg)](/Images/hostathome2.png)
-[![hostathome3-thumb.jpg](/Images/hostathome3-thumb.jpg)](/Images/hostathome3.png)
+[![hostathome1-thumb.jpg](http://yeuxdelibad.net/Images/hostathome1-thumb.jpg)](http://yeuxdelibad.net/Images/hostathome1.png)
+[![hostathome2-thumb.jpg](http://yeuxdelibad.net/Images/hostathome2-thumb.jpg)](http://yeuxdelibad.net/Images/hostathome2.png)
+[![hostathome3-thumb.jpg](http://yeuxdelibad.net/Images/hostathome3-thumb.jpg)](http://yeuxdelibad.net/Images/hostathome3.png)

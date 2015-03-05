@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head> 
+    <title>Welcome home</title>
+    <meta charset="UTF-8">
+	<style type="text/css" style="display:none">
+* {
+    transition: all 0.5s ease;
+    font-family: sans-serif;
+    font-size:1.05em;
+}
+
+html, body {
+    min-height: 100%;
+    width:100%;
+    margin:0;
+}
+ 
+body {
+    background: #fff;
+    color: #222;
+}
+
+a { color:#369; }
+a:hover {text-decoration:underline;}
+
+.header {
+background: #222222;
+border:0;
+text-align:center;
+margin:0;
+padding:0;
+line-height:50px;
+}
+
+.headerTitle {
+font-size:2.5em;
+margin:0 .5em 0 .5em;
+padding:.25em;
+}
+
+.headerTitle a {
+border:0;
+text-decoration:none;
+color:#D2D3D2;
+}
+
+.headerTitle a:hover {
+border:0;
+text-decoration:none;
+}
+
+#main { 
+	text-align: justify;
+    font-size:1em;
+    min-height:100%;
+    position:relative;
+	clear: both;
+	text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%; /*footer height*/
+    padding: 0.2em 0.2em 0 0.2em;
+}
+
+#footer {
+	font-size: 0.7em;
+	padding: 0.25em;
+	margin: 0.1em;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    max-height:5%;
+    z-index:+1;
+}
+
+#footer a { text-decoration: none; }
+#footer a:hover { text-decoration: underline; }
+#footer img { vertical-align:middle; }
+
+.gallery {
+    clear:both;
+    margin-top: 50px;
+    text-align:center;
+}
+
+.gallery ul {list-style:none;}
+
+.gallery img {
+    height: 100px;
+    width: 100px;
+    margin:auto;
+}
+
+.gallery li {
+    text-align:center;
+    margin:0 10px 0 0;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    display:inline-block;
+    border-radius: 50%;
+    border: solid #222 5px;
+}
+
+.gallery li:hover {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    height: 110px;
+    width: 110px;
+}
+
+.gallery li:hover img{
+    height: 110px;
+    width: 110px;
+}
+
+.gallery li .legende {
+    clear:both;
+    width:120px;
+   position:absolute;
+     
+   color: transparent;
+   text-align: center;
+   margin-left:auto;
+   margin-right:auto;
+
+   font-size:0.8em;
+   text-transform: uppercase;
+     
+}
+ 
+.gallery li:hover .legende {
+   color: #222;
+   text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+</style>
+</head> 
+<body>
+<div class="header">
+<h1 class="headerTitle">
+    <a href="index.html">Bienvenue chez vous</a></h1>
+</div>
+
+<div id="main">
+
+<div class="gallery">
+    <ul>
+        <li> <a href="/blog">
+                <img src="logos/blogotext.jpg" alt="logo blogotext">
+            <div class="legende">Votre blog</div></a>
+        </li>
+        <li> <a href="/kriss">
+                <img src="logos/rss.jpg" alt="logo rss">
+            <div class="legende">Vos flux rss</div> </a>
+        </li>
+        <li> <a href="/drop">
+                <img src="logos/dropcenter.png" alt="logo dropcenter">
+            <div class="legende">Votre dépôt de fichiers</div> </a>
+        </li>
+        <li> <a href="/liens">
+                <img src="logos/shaarli.png" alt="logo shaarli">
+            <div class="legende">Votre shaarli</div> </a>
+        </li>
+        <li> <a href="/zerobin">
+                <img src="logos/zerobin.png" alt="logo zerobin">
+            <div class="legende">Votre pastebin privé</div> </a>
+        </li>
+        <li> <a href="/wiki">
+                <img src="logos/dokuwiki.png" alt="logo dokuwiki">
+            <div class="legende">Votre wiki</div> </a>
+        </li>
+        <li> <a href="/wallabag">
+                <img src="logos/wallabag.png" alt="logo wallabag">
+            <div class="legende">Votre wallabag</div> </a>
+        </li>
+        <li> <a href="/webmail">
+                <img src="logos/squirrelmail.png" alt="logo squirrelmail">
+            <div class="legende">Votre courrier</div> </a>
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+
+
+
+<div id="footer">
+Site installé avec <a href="http://yeuxdelibad.net/Programmation/Hostathome.html">Hostathome</a> <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://yeuxdelibad.net"></a>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
+
+<noscript>
+<a href="https://flattr.com/submit/auto?user_id=Thuban&amp;url=http%3A%2F%2Fyeuxdelibad.net" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this"></a>
+</noscript>
+
+</div>
+
+</body>
+</html>

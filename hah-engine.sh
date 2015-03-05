@@ -1605,6 +1605,34 @@ EOF
 
 }
 
+domycryptochat() {
+   # domycryptochat <nom d'hote> </dossier/contenant/mycryptochat>
+    local domaineconf="/etc/nginx/conf.d/mycryptochat.conf"
+    local NOMDHOTE="$1"
+    local ROOTOFHTTP="$2"
+
+    installapt nginx php5 php5-fpm php-apc unzip
+    prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
+    process "$STOCK/nginx-zerobin.conf" > "${domaineconf}"
+
+    # mycryptochat
+    echo "Téléchargeons le dernier mycryptochat"
+    wget -c -O $TEMP/mycryptochat.zip "https://github.com/HowTommy/mycryptochat/archive/master.zip"
+    mkdir -p $TEMP/mycryptochat
+    unzip $TEMP/mycryptochat.zip -d $TEMP/mycryptochat
+    mv $TEMP/mycryptochat/*/* "/$ROOTOFHTTP"
+    
+    finwebserver 0 "/$ROOTOFHTTP" 
+
+    rapport << EOF
+---
+Mycryptochat installé
+Ouvrez dans un navigateur https://$NOMDHOTE
+
+* Site : https://github.com/HowTommy/mycryptochat
+EOF
+}
+
 doglobalinstall() {
 # install a preselection of services in subdirectories on one domain
 # doglobalinstall <nom d'hote> </repertoire/de/stockage> 
@@ -1706,14 +1734,27 @@ Plusieurs services sont maintenant installés. Vous les retrouverez ici :
 EOF
 }
 
-doglobalinstall+() {
+doglobalinstallplus() {
 # install a preselection of services in subdirectories on one domain
-# doglobalinstall+ <nom d'hote> <domaine (champ A)> </repertoire/de/stockage> 
+# doglobalinstallplus <nom d'hote> </repertoire/de/stockage> <domaine (champ A)> 
     local NOMDHOTE="$1"
-    local DOMAIN="$2"
-    local ROOTOFHTTP="$3"
+    local DOMAIN="$3"
+    local ROOTOFHTTP="$2"
+    local SSLCERT="
+    ssl_certificate /etc/ssl/private/$NOMDHOTE.pem;
+    ssl_certificate_key /etc/ssl/private/$NOMDHOTE.pem;"
+
     doglobalinstall "$NOMDHOTE" "$ROOTOFHTTP"
+    rm /etc/nginx/conf.d/global.conf
+
+    process "$STOCK/nginx-globalplus.conf" > /etc/nginx/conf.d/globalplus.conf
     dopostfix "$NOMDHOTE" "$DOMAIN"
+
+    #squirrelmail
+    installapt squirrelmail squirrelmail-locales php5-fpm php5 php5-common squirrelmail-quicksave squirrelmail-spam-buttons squirrelmail-viewashtml 
+
+    cp -v "$STOCK/squirrelmail_config.php" /etc/squirrelmail/
+    ln -s /usr/share/squirrelmail/ "$ROOTOFHTTP"/webmail
 
     # page d'accueil
     cp $STOCK/global-welcomeplus.html "$ROOTOFHTTP/index.html"

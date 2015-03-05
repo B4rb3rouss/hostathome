@@ -99,8 +99,8 @@ info_postfix() {
        - Un champ de type MX pointant vers le A précédent. C'est en général le nom de domaine porté dans les adresses : machin@domain.net\n\
    Ainsi, lorqu'on vous écrit à machin@domain.net, c'est directement relié à l'hôte mail.server.net" 20 60
 
-    dgetinfo NOMDHOTE "Quel est votre nom de domaine (sans http://)? (ex : mondomaine.com)" "Configuration de postfix"
-    dgetinfo DOMAIN "Quel est votre nom d'hote (sans http://)? (ex : smtp.mondomaine.com)"  "Configuration de postfix"
+    dgetinfo NOMDHOTE "Quel est votre nom de domaine (sans http://)? (champ MX, ex : mondomaine.com)" "Configuration de postfix"
+    dgetinfo DOMAIN "Quel est votre nom d'hote (sans http://)? (champ A, ex : smtp.mondomaine.com)"  "Configuration de postfix"
     assign "$1" <<< "dopostfix $NOMDHOTE $DOMAIN"
 }
 
@@ -194,7 +194,8 @@ dialogmenu() {
         --checklist 'Tâche(s) à accomplir: \n(<espace> pour cocher, <↑> et <↓> pour déplacer le curseur, <tabulation> pour choisir le bouton, <Entrée> pour valider)' 25 65 18 \
         preparation "Prépare le serveur en le mettant à jour" on\
         securite "sécurité minimale du serveur" on\
-        globale "[Debutant]Services web standards" off\
+        globale "[Debutant] Services web standards" off\
+        globale+ "[Intermediaire]] Services + courriel" off\
         http_nginx "Installer un serveur http(s) (nginx)" off\
         sftp "Partage de fichiers sécurisé avec sftp" off\
         openvpn "Serveur vpn" off\
@@ -252,6 +253,25 @@ dialogmenu() {
                         info_ssl
                         info_site COMMAND "services_standards" 
                         echo "doglobalinstall $COMMAND" >> "$tmpwork"
+                        ;;
+                    "globale+")
+                        dialog --msgbox "Plusieurs services vont être automatiquement installés.\n\
+    Répondez aux questions suivantes puis profitez de:\n\
+    - Dropcenter : Mettre des fichiers en ligne (pseudo-cloud)\n\
+    - Kriss : Un lecteur de flux rss\n\
+    - Shaarli : Pour partager vos liens/prendre des notes\n\
+    - Blogotext : Votre blog\n\
+    - Zerobin : Pour coller du texte/discuter de façon privée\n\
+    - Wallabag : Pour sauvegarder des pages à lire \n\
+    - Postfix : serveur mail \n\
+    - Squirrelmail : webmail pour consulter vos mails \n\
+    - Dokuwiki : Votre wiki" 20 60
+
+                        local DOMAIN=""
+                        dgetinfo DOMAIN "Quel est le champ A pour les mails? (ex : smtp.mondomaine.com)"  "Configuration de postfix"
+                        info_ssl
+                        info_site COMMAND "services_standards" 
+                        echo "doglobalinstallplus $COMMAND $DOMAIN" >> "$tmpwork"
                         ;;
                     "http_nginx") 
                         info_nginx COMMAND 
