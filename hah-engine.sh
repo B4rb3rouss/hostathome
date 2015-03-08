@@ -1349,7 +1349,7 @@ dotinytodo(){
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-mytinytodo.conf" > "${domaineconf}"
 
-    # dropcenter
+    # mytinytodo
     echo -e "Téléchargeons le dernier mytinytodo"
     wget -O $TEMP/mytinytodo.zip "http://www.mytinytodo.net/latest.php"
     mkdir -p $TEMP/mytinytodo

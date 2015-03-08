@@ -111,6 +111,9 @@ Une page d'accueil sera créée pour accéder aux services :
   delicious-like de sebsauvage,
 - Installation de
   [ZeroBin](http://sebsauvage.net/wiki/doku.php?id=php:zerobin), le pastebin de sebsauvage,
+- Installation de
+  [MyCryptoChat](https://github.com/HowTommy/mycryptochat), salons de
+  discussions cryptés.
 - Installation d'une seedbox torrent
   ([rtorrent](http://libtorrent.rakshasa.no/) et
   [rutorrent](https://code.google.com/p/rutorrent/)), ou avec
