@@ -1734,7 +1734,7 @@ rapport << EOF
 ---
 Plusieurs services sont maintenant installés. Vous les retrouverez ici : 
 
-- Dropcenter : http://$NOMDHOTE/drop
+- Owncloud : http://$NOMDHOTE/cloud
 - Kriss : http://$NOMDHOTE/kriss
 - Shaarli : http://$NOMDHOTE/liens
 - Blogotext : http://$NOMDHOTE/blog

@@ -244,7 +244,7 @@ dialogmenu() {
                     "globale")
                         dialog --msgbox "Plusieurs services vont être automatiquement installés.\n\
     Répondez aux questions suivantes puis profitez de:\n\
-    - Dropcenter : Mettre des fichiers en ligne (pseudo-cloud)\n\
+    - Owncloud : Votre cloud\n\
     - Kriss : Un lecteur de flux rss\n\
     - Shaarli : Pour partager vos liens/prendre des notes\n\
     - Blogotext : Votre blog\n\
@@ -259,7 +259,7 @@ dialogmenu() {
                     "globale+")
                         dialog --msgbox "Plusieurs services vont être automatiquement installés.\n\
     Répondez aux questions suivantes puis profitez de:\n\
-    - Dropcenter : Mettre des fichiers en ligne (pseudo-cloud)\n\
+    - Owncloud : Votre cloud\n\
     - Kriss : Un lecteur de flux rss\n\
     - Shaarli : Pour partager vos liens/prendre des notes\n\
     - Blogotext : Votre blog\n\
