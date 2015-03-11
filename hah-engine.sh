@@ -131,8 +131,8 @@ finwebserver() {
 
 phpuploadlimit() {
     # Limite d'upload
-    sed -i "s/upload_max_filesize.*$/upload_max_filesize = 1000M/g" /etc/php5/fpm/php.ini
-    sed -i "s/post_max_size.*$/post_max_size = 1000M/g" /etc/php5/fpm/php.ini
+    sed -i "s/upload_max_filesize.*$/upload_max_filesize = 1500M/g" /etc/php5/fpm/php.ini
+    sed -i "s/post_max_size.*$/post_max_size = 1500M/g" /etc/php5/fpm/php.ini
 }
 
 preppgsql() {
@@ -1643,20 +1643,19 @@ doglobalinstall() {
     local ROOTOFHTTP="$2"
     local SSLCERT=""
 
-    installapt nginx php5 openssl ssl-cert php5-fpm php-apc unzip php5-curl php5-gd sqlite php5-sqlite imagemagick php-geshi php5-mcrypt php5-tidy php5-cli curl
+    installapt nginx php5 php5-gd php-xml-parser php5-intl curl libcurl3 php5-curl openssl ssl-cert php5-dev php5-fpm php5-cli php5-sqlite php5-common php5-cgi sqlite php-pear php-apc bzip2 libav-tools php5-mcrypt php5-imagick php5-json bzip2 unzip imagemagick php5-geshi 
 
     prepwebserver 0 "/$ROOTOFHTTP" "$NOMDHOTE"
     process "$STOCK/nginx-global.conf" > /etc/nginx/conf.d/global.conf
     phpuploadlimit
 
-    # dropcenter
-    mkdir -p "$ROOTOFHTTP/drop"
-    echo -e "Téléchargeons le dernier dropcenter"
-    wget -O $TEMP/lastdropcenter.zip "https://github.com/ldleman/dropcenter/archive/master.zip"
-    mkdir $TEMP/dropcentertmp
-    unzip $TEMP/lastdropcenter.zip -d "$TEMP/dropcentertmp"
-    mv "$TEMP"/dropcentertmp/dropcenter-master/* "/$ROOTOFHTTP"/drop
-    chmod 755 "/$ROOTOFHTTP"/dropcenter-master/uploads
+    # owncloud
+    mkdir -p "$ROOTOFHTTP/cloud"
+    echo -e "Téléchargeons le dernier owncloud"
+    wget -c -O $TEMP/lastowncloud.tar.bz2 "https://download.owncloud.org/community/owncloud-8.0.0.tar.bz2"
+    tar xvjf $TEMP/lastowncloud.tar.bz2 -C "/$ROOTOFHTTP"
+    mkdir -p "/$ROOTOFHTTP/owncloud/"{apps,data,config}
+    chown -R www-data:www-data "/$ROOTOFHTTP/owncloud/"{apps,data,config}
 
     #kriss
     mkdir -p "$ROOTOFHTTP"/kriss
