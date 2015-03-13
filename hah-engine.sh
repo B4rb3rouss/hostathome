@@ -1635,6 +1635,26 @@ Ouvrez dans un navigateur https://$NOMDHOTE
 EOF
 }
 
+docgit() {
+   # docgit <nom d'hote> 
+    local domaineconf="/etc/nginx/conf.d/cgit.conf"
+    local NOMDHOTE="$1"
+
+    installapt nginx cgit git fcgiwrap spawn-fcgi highlight
+    process "$STOCK/nginx-zerobin.conf" > "${domaineconf}"
+
+
+    rapport << EOF
+---
+cgit installé
+Ouvrez dans un navigateur https://$NOMDHOTE
+
+* Site : https://github.com/HowTommy/mycryptochat
+EOF
+}
+
+
+
 doglobalinstall() {
 # install a preselection of services in subdirectories on one domain
 # doglobalinstall <nom d'hote> </repertoire/de/stockage> 
